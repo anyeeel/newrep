@@ -74,7 +74,7 @@
       </li>
 
 
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
          Admin <i class="fas fa-sign-out-alt"></i>
     </a>
@@ -88,7 +88,7 @@
             @csrf
         </form>
     </div>
-</li>
+</li> -->
 
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
