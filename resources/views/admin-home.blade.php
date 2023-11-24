@@ -26,6 +26,11 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('backend')}}/plugins/summernote/summernote-bs4.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Include SweetAlert CSS -->
+  <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert.css') }}">
+  <!-- Include SweetAlert JS -->
+  <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -146,6 +151,16 @@
                 </p>
             </a>
         </li>
+
+        <li class="nav-item">
+    <a href="{{ route('resolutions.index') }}" class="nav-link">
+        <i class="nav-icon fas fa-file"></i>
+        <p>
+            Resolutions
+        </p>
+    </a>
+</li>
+
 
 
         <!-- Add a new list item for Logout with the same style and margin -->
