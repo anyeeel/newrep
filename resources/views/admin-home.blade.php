@@ -198,26 +198,100 @@
 <div class="tab-body">
     <div class="active">
         <h2>Pakigsayud</h2>
-        @foreach($pakigsayudResolutions as $resolution)
-            <p>{{ $resolution->title }} - {{ $resolution->description }}</p>
-            <!-- Add other details you want to display -->
-        @endforeach
+        <ul class="list-unstyled">
+            @foreach($pakigsayudResolutions as $resolution)
+                <li class="media my-4">
+                    @if ($resolution->photo)
+                        <img class="mr-3" src="{{ asset('images/photos/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                            class="img-fluid rounded" style="max-width: 150px; max-height: 150px;">
+                    @else
+                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                            style="width: 150px; height: 150px;">
+                            <span class="text-muted">No Photo Available</span>
+                        </div>
+                    @endif
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <p>{{ $resolution->memorandum_number }}</p>
+                        <p>{{ $resolution->description }}</p>
+                        <div class="mt-3">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
+                            <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+                        </div>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
     </div>
+
+    <!-- Forms/Guides Category -->
     <div>
         <h2>Forms/Guides</h2>
-        @foreach($formGuidesResolutions as $resolution)
-            <p>{{ $resolution->title }} - {{ $resolution->description }}</p>
-            <!-- Add other details you want to display -->
-        @endforeach
+        <ul class="list-unstyled">
+            @foreach($formGuidesResolutions as $resolution)
+                <li class="media my-4">
+                    <!-- Repeat the same structure as above -->
+                    <li class="media my-4">
+                    @if ($resolution->photo)
+                        <img class="mr-3" src="{{ asset('images/photos/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                            class="img-fluid rounded" style="max-width: 150px; max-height: 150px;">
+                    @else
+                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                            style="width: 150px; height: 150px;">
+                            <span class="text-muted">No Photo Available</span>
+                        </div>
+                    @endif
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <p>{{ $resolution->memorandum_number }}</p>
+                        <p>{{ $resolution->description }}</p>
+                        <div class="mt-3">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
+                            <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+                        </div>
+                    </div>
+                </li>
+                </li>
+            @endforeach
+        </ul>
     </div>
+
+    <!-- Downloadable Files Category -->
     <div>
         <h2>Downloadable Files</h2>
-        @foreach($downloadableFilesResolutions as $resolution)
-            <p>{{ $resolution->title }} - {{ $resolution->description }}</p>
-            <!-- Add other details you want to display -->
-        @endforeach
+        <ul class="list-unstyled">
+            @foreach($downloadableFilesResolutions as $resolution)
+                <li class="media my-4">
+                    <!-- Repeat the same structure as above -->
+                    <li class="media my-4">
+                    @if ($resolution->photo)
+                        <img class="mr-3" src="{{ asset('images/photos/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                            class="img-fluid rounded" style="max-width: 150px; max-height: 150px;">
+                    @else
+                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                            style="width: 150px; height: 150px;">
+                            <span class="text-muted">No Photo Available</span>
+                        </div>
+                    @endif
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <p>{{ $resolution->memorandum_number }}</p>
+                        <p>{{ $resolution->description }}</p>
+                        <div class="mt-3">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
+                            <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+                        </div>
+                    </div>
+                </li>
+                </li>
+            @endforeach
+        </ul>
     </div>
 </div>
+
 
 <!-- ... existing code ... -->
 
