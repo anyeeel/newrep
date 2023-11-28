@@ -122,7 +122,7 @@
           <img src="{{asset('backend')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block">User</a>
         </div>
       </div>
 
@@ -144,22 +144,13 @@
         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('home') }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
                 </p>
             </a>
         </li>
-
-        <!-- <li class="nav-item">
-    <a href="{{ route('resolutions.index') }}" class="nav-link">
-        <i class="nav-icon fas fa-file"></i>
-        <p>
-            Resolutions
-        </p>
-    </a>
-</li> -->
 
 
 
@@ -193,30 +184,111 @@
         <div class="tab-indicator">
             <div></div>
         </div>
-        <div class="tab-body">
-            <div class="active">
-                <h2>Pakigsayud</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cumque quo, iusto consectetur explicabo aut sequi! Corrupti iusto, nemo odit quam tenetur aliquam excepturi nobis animi rerum quis quos. Voluptate!</p>
-                <p>Accusantium, voluptatibus, iusto consequatur soluta commodi totam, maiores sapiente in sed illum distinctio aliquid voluptas neque tempore earum voluptatum modi recusandae nobis perspiciatis inventore! Perferendis nulla accusamus quidem dicta aliquid?</p>
-                <p>Cupiditate itaque minima reprehenderit nam vitae voluptatem, ipsam facere nulla tempore magni delectus porro tenetur nesciunt veniam hic dolores aliquam ipsum expedita vel nobis molestiae omnis. Dolor totam dolorem magni.</p>
-                <p>Enim eveniet totam laborum esse! Nulla ad modi ea possimus, atque dolor ratione iusto magnam eos ipsam nam itaque molestiae dolorum aspernatur exercitationem ex dolorem animi deserunt, repudiandae, natus accusamus.</p>
-            </div>
-            <div>
-                <h2>Forms/Guides</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cumque quo, iusto consectetur explicabo aut sequi! Corrupti iusto, nemo odit quam tenetur aliquam excepturi nobis animi rerum quis quos. Voluptate!</p>
-                <p>Accusantium, voluptatibus, iusto consequatur soluta commodi totam, maiores sapiente in sed illum distinctio aliquid voluptas neque tempore earum voluptatum modi recusandae nobis perspiciatis inventore! Perferendis nulla accusamus quidem dicta aliquid?</p>
-                <p>Cupiditate itaque minima reprehenderit nam vitae voluptatem, ipsam facere nulla tempore magni delectus porro tenetur nesciunt veniam hic dolores aliquam ipsum expedita vel nobis molestiae omnis. Dolor totam dolorem magni.</p>
-                <p>Enim eveniet totam laborum esse! Nulla ad modi ea possimus, atque dolor ratione iusto magnam eos ipsam nam itaque molestiae dolorum aspernatur exercitationem ex dolorem animi deserunt, repudiandae, natus accusamus.</p>
-            </div>
-            <div>
-                <h2>Downloadable Files</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cumque quo, iusto consectetur explicabo aut sequi! Corrupti iusto, nemo odit quam tenetur aliquam excepturi nobis animi rerum quis quos. Voluptate!</p>
-                <p>Accusantium, voluptatibus, iusto consequatur soluta commodi totam, maiores sapiente in sed illum distinctio aliquid voluptas neque tempore earum voluptatum modi recusandae nobis perspiciatis inventore! Perferendis nulla accusamus quidem dicta aliquid?</p>
-                <p>Cupiditate itaque minima reprehenderit nam vitae voluptatem, ipsam facere nulla tempore magni delectus porro tenetur nesciunt veniam hic dolores aliquam ipsum expedita vel nobis molestiae omnis. Dolor totam dolorem magni.</p>
-                <p>Enim eveniet totam laborum esse! Nulla ad modi ea possimus, atque dolor ratione iusto magnam eos ipsam nam itaque molestiae dolorum aspernatur exercitationem ex dolorem animi deserunt, repudiandae, natus accusamus.</p>
-            </div>
-        </div>
+<!-- ... existing code ... -->
+
+<div class="tab-body">
+    <div class="active">
+        <h2>Pakigsayud</h2>
+        <ul class="list-unstyled">
+            @foreach($pakigsayudResolutions as $resolution)
+                <li class="media my-4">
+                @if ($resolution->photo)
+                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                            @else
+                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                                    style="width: 300px; height: 300px;">
+                                        <span class="text-muted">No Photo Available</span>
+                                </div>
+                            @endif
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <p>{{ $resolution->memorandum_number }}</p>
+                        <p>{{ $resolution->description }}</p>
+                        <div class="mt-3">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
+                            <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+                        </div>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+    <!-- Forms/Guides Category -->
+    <div>
+        <h2>Forms/Guides</h2>
+        <ul class="list-unstyled">
+            @foreach($formGuidesResolutions as $resolution)
+                <li class="media my-4">
+                    <!-- Repeat the same structure as above -->
+                    <li class="media my-4">
+                    @if ($resolution->photo)
+                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                            @else
+                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                                    style="width: 300px; height: 300px;">
+                                        <span class="text-muted">No Photo Available</span>
+                                </div>
+                            @endif
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <p>{{ $resolution->memorandum_number }}</p>
+                        <p>{{ $resolution->description }}</p>
+                        <div class="mt-3">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
+                            <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+                        </div>
+                    </div>
+                </li>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+    <!-- Downloadable Files Category -->
+    <div>
+        <h2>Downloadable Files</h2>
+        <ul class="list-unstyled">
+            @foreach($downloadableFilesResolutions as $resolution)
+                <li class="media my-4">
+                    <!-- Repeat the same structure as above -->
+                    <li class="media my-4">
+                    @if ($resolution->photo)
+                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                            @else
+                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                                    style="width: 300px; height: 300px;">
+                                        <span class="text-muted">No Photo Available</span>
+                                </div>
+                            @endif
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <p>{{ $resolution->memorandum_number }}</p>
+                        <p>{{ $resolution->description }}</p>
+                        <div class="mt-3">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
+                            <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+                        </div>
+                    </div>
+                </li>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+
+
+<!-- ... existing code ... -->
+
 </div> 
+
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

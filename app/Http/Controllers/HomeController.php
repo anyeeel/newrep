@@ -24,8 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+    // Fetch resolutions for Pakigsayud category (adjust as needed)
+    $pakigsayudResolutions = Resolutions::where('category', 'pakigsayud')->get();
+    
+    // Fetch resolutions for Forms/Guides category (adjust as needed)
+    $formGuidesResolutions = Resolutions::where('category', 'forms/guides')->get();
+    
+    // Fetch resolutions for Downloadable Files category (adjust as needed)
+    $downloadableFilesResolutions = Resolutions::where('category', 'downloadable files')->get();
+
+    return view('home', compact('pakigsayudResolutions', 'formGuidesResolutions', 'downloadableFilesResolutions'));
     }
+
     public function adminHome() {
         // return view('admin-home');
         $pakigsayudResolutions = Resolutions::where('category', 'pakigsayud')->get();

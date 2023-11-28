@@ -217,6 +217,7 @@
                         <div class="mt-3">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
                             <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning">Edit</a>
                             <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
                         </div>
                     </div>
@@ -249,6 +250,7 @@
                         <div class="mt-3">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
                             <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning">Edit</a>
                             <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
                         </div>
                     </div>
