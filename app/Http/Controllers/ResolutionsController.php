@@ -25,7 +25,26 @@ class ResolutionsController extends Controller
         $resolutions = Resolutions::all();
         return view('resolutions.index', compact('resolutions')); // Adjusted path
     }
+
+    // public function index($category = null)
+    // {
+    //     $resolutions = ($category)
+    //         ? Resolutions::where('category', $category)->get()
+    //         : Resolutions::all();
+
+    //     return view('admin-home', compact('resolutions', 'category'));
+    // }
        
+//     public function index()
+// {
+
+//     $pakigsayudResolutions = Resolutions::where('category', 'Pakigsayud')->get();
+//     $formGuidesResolutions = Resolutions::where('category', 'Forms/Guides')->get();
+//     $downloadableFilesResolutions = Resolutions::where('category', 'Downloadable files')->get();
+
+//     return view('resolutions.index', compact('pakigsayudResolutions', 'formGuidesResolutions', 'downloadableFilesResolutions'));
+// }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,17 +65,16 @@ class ResolutionsController extends Controller
             'title' => 'required|max:255',
             'memorandum_number' => 'required|unique:resolutions,memorandum_number',
             'description' => 'required',
-            'photo' => 'nullable|image', // Assuming the photo is an image file
+            'photo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048', // Assuming the photo is an image file
             'file_path' => 'nullable|mimes:pdf,doc,docx', // Allowing PDF, DOC, and DOCX file formats
             'category' => 'required',
         ]);
     
-        // Additional logic for handling file uploads, if necessary
         if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $imageName = 'photo' . time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/dist/img/'), $imageName);
-            $request->merge(['photo' => $imageName]);
+            $photo = $request->file('photo');
+            $photoName = time().'.'.$request->photo->extension();
+            $photoPath = $photo->storeAs('photos', $photoName, 'public');
+            $validatedData['photo'] = $photoPath;
         }
     
         if ($request->hasFile('file_path')) {
@@ -70,10 +88,28 @@ class ResolutionsController extends Controller
         
         // Create a new resolution
         $resolution = \App\Models\Resolutions::create($validatedData);
+          // Fetch all resolutions
+    $resolutions = \App\Models\Resolutions::all();
     
         // Redirect to the index view with a success message
         return redirect()->route('resolutions.index')->with('success', 'Resolution created successfully.');
+        // return redirect()->route('admin.home', ['category' => $request->category])->with('success', 'Resolution created successfully.');
+
     }
+
+    // Inside ResolutionsController
+// Inside ResolutionsController
+// public function dashboard($category = null)
+// {
+//     // Fetch resolutions based on the selected category
+//     $resolutions = ($category)
+//         ? \App\Models\Resolutions::where('category', $category)->get()
+//         : \App\Models\Resolutions::all();
+
+//     // Pass resolutions and selected category to the view
+//     return view('admin.home', compact('resolutions', 'category'));
+// }
+
       
     
 
@@ -83,8 +119,10 @@ class ResolutionsController extends Controller
     public function show($id)
     {
         $resolution = Resolutions::findOrFail($id);
-        return view('resolutions.show', compact('resolution')); // Adjusted path
+    
+        return view('resolutions.show', compact('resolution'));
     }
+    
     
 
     /**
@@ -121,12 +159,18 @@ class ResolutionsController extends Controller
                 // Add validation rules for other fields
             ]);
         
-            // Handle photo upload
             if ($request->hasFile('photo')) {
-                $photoPath = $request->file('photo')->store('photos', 'public');
-                $request->merge(['photo' => $photoPath]);
+                $photo = $request->file('photo');
+                $photoName = time().'.'.$request->photo->extension();
+                $photoPath = $photo->storeAs('photos', $photoName, 'public');
+                $validatedData['photo'] = $photoPath;
             }
-        
+            
+    //         // Save the uploaded photo
+    // if ($request->hasFile('photo')) {
+    //     $photoPath = $request->file('photo')->store('images/photos', 'public');
+    //     $resolution->photo = basename($photoPath);
+    // }
     
         // Handle the uploaded document if it exists
         if ($request->hasFile('document')) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>User Dashboard</title>
+  <title>Admin Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -144,7 +144,7 @@
         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.home') }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -152,14 +152,14 @@
             </a>
         </li>
 
-        <!-- <li class="nav-item">
+        <li class="nav-item">
     <a href="{{ route('resolutions.index') }}" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>
             Resolutions
         </p>
     </a>
-</li> -->
+</li>
 
 
 
@@ -195,6 +195,7 @@
         </div>
         <div class="tab-body">
             <div class="active">
+              
                 <h2>Pakigsayud</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cumque quo, iusto consectetur explicabo aut sequi! Corrupti iusto, nemo odit quam tenetur aliquam excepturi nobis animi rerum quis quos. Voluptate!</p>
                 <p>Accusantium, voluptatibus, iusto consequatur soluta commodi totam, maiores sapiente in sed illum distinctio aliquid voluptas neque tempore earum voluptatum modi recusandae nobis perspiciatis inventore! Perferendis nulla accusamus quidem dicta aliquid?</p>

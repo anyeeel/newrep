@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Resolutions<h1>
+                    <h1>Resolutions</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -32,29 +32,35 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <!-- Display Resolution and Issuance Details -->
-                            <div>
-                                <h5>Title: {{ $resolution->title }}</h5>
-                                <p>Memorandum Number: {{ $resolution->memorandum_number }}</p>
-                                <p>Description: {{ $resolution->description }}</p>
+                        <!-- Display PDF file -->
+                        <div>
+                            <h5>Title: {{ $resolution->title }}</h5>
+                            
+                            @if ($resolution->photo)
+                                <img src="{{ asset('images/photos/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                            @else
+                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                                    style="width: 300px; height: 300px;">
+                                    <span class="text-muted">No Photo Available</span>
+                                </div>
+                            @endif
 
-                                @if ($resolution->photo)
-                                    <img src="{{ asset('backend/dist/img/' . $resolution->photo) }}"
-                                         alt="Resolution and Issuance Photo" class="img-fluid rounded mx-auto d-block"
-                                         style="max-width: 300px; max-height: 300px;">
-                                @else
-                                    <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                                         style="width: 300px; height: 300px;">
-                                        <span class="text-muted">No Photo Available</span>
-                                    </div>
-                                @endif
+                            <p>Memorandum Number: {{ $resolution->memorandum_number }}</p>
+                            <p>Description: {{ $resolution->description }}</p>
 
-                                <p>Category: {{ $resolution->category }}</p>
-                                <p>File {{ $resolution->file_upload }}</p>
+                            <p>Category: {{ $resolution->category }}</p>
+                            
+                            <!-- Display PDF file using iframe -->
+                            @if ($resolution->file_path)
+                                <iframe src="{{ asset('storage/' . $resolution->file_path) }}" width="100%" height="600px"></iframe>
+                            @else
+                                <p>No PDF Available</p>
+                            @endif
 
-                                <!-- You can add more details based on your actual fields -->
+                            <!-- You can add more details based on your actual fields -->
+                        </div>
 
-                            </div>
 
                             <!-- Add additional sections as needed -->
 
