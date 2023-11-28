@@ -89,7 +89,6 @@ class ResolutionsController extends Controller
         // Create a new resolution
         $resolution = \App\Models\Resolutions::create($validatedData);
           // Fetch all resolutions
-    $resolutions = \App\Models\Resolutions::all();
     
         // Redirect to the index view with a success message
         return redirect()->route('resolutions.index')->with('success', 'Resolution created successfully.');
@@ -116,7 +115,7 @@ class ResolutionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Resolutions $resolution)
     {
         $resolution = Resolutions::findOrFail($id);
     

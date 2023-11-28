@@ -197,6 +197,7 @@
             <div class="active">
               
                 <h2>Pakigsayud</h2>
+                
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cumque quo, iusto consectetur explicabo aut sequi! Corrupti iusto, nemo odit quam tenetur aliquam excepturi nobis animi rerum quis quos. Voluptate!</p>
                 <p>Accusantium, voluptatibus, iusto consequatur soluta commodi totam, maiores sapiente in sed illum distinctio aliquid voluptas neque tempore earum voluptatum modi recusandae nobis perspiciatis inventore! Perferendis nulla accusamus quidem dicta aliquid?</p>
                 <p>Cupiditate itaque minima reprehenderit nam vitae voluptatem, ipsam facere nulla tempore magni delectus porro tenetur nesciunt veniam hic dolores aliquam ipsum expedita vel nobis molestiae omnis. Dolor totam dolorem magni.</p>

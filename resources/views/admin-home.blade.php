@@ -144,7 +144,7 @@
         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.home') }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -193,30 +193,34 @@
         <div class="tab-indicator">
             <div></div>
         </div>
-        <div class="tab-body">
-            <div class="active">
-              
-                <h2>Pakigsayud</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cumque quo, iusto consectetur explicabo aut sequi! Corrupti iusto, nemo odit quam tenetur aliquam excepturi nobis animi rerum quis quos. Voluptate!</p>
-                <p>Accusantium, voluptatibus, iusto consequatur soluta commodi totam, maiores sapiente in sed illum distinctio aliquid voluptas neque tempore earum voluptatum modi recusandae nobis perspiciatis inventore! Perferendis nulla accusamus quidem dicta aliquid?</p>
-                <p>Cupiditate itaque minima reprehenderit nam vitae voluptatem, ipsam facere nulla tempore magni delectus porro tenetur nesciunt veniam hic dolores aliquam ipsum expedita vel nobis molestiae omnis. Dolor totam dolorem magni.</p>
-                <p>Enim eveniet totam laborum esse! Nulla ad modi ea possimus, atque dolor ratione iusto magnam eos ipsam nam itaque molestiae dolorum aspernatur exercitationem ex dolorem animi deserunt, repudiandae, natus accusamus.</p>
-            </div>
-            <div>
-                <h2>Forms/Guides</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cumque quo, iusto consectetur explicabo aut sequi! Corrupti iusto, nemo odit quam tenetur aliquam excepturi nobis animi rerum quis quos. Voluptate!</p>
-                <p>Accusantium, voluptatibus, iusto consequatur soluta commodi totam, maiores sapiente in sed illum distinctio aliquid voluptas neque tempore earum voluptatum modi recusandae nobis perspiciatis inventore! Perferendis nulla accusamus quidem dicta aliquid?</p>
-                <p>Cupiditate itaque minima reprehenderit nam vitae voluptatem, ipsam facere nulla tempore magni delectus porro tenetur nesciunt veniam hic dolores aliquam ipsum expedita vel nobis molestiae omnis. Dolor totam dolorem magni.</p>
-                <p>Enim eveniet totam laborum esse! Nulla ad modi ea possimus, atque dolor ratione iusto magnam eos ipsam nam itaque molestiae dolorum aspernatur exercitationem ex dolorem animi deserunt, repudiandae, natus accusamus.</p>
-            </div>
-            <div>
-                <h2>Downloadable Files</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cumque quo, iusto consectetur explicabo aut sequi! Corrupti iusto, nemo odit quam tenetur aliquam excepturi nobis animi rerum quis quos. Voluptate!</p>
-                <p>Accusantium, voluptatibus, iusto consequatur soluta commodi totam, maiores sapiente in sed illum distinctio aliquid voluptas neque tempore earum voluptatum modi recusandae nobis perspiciatis inventore! Perferendis nulla accusamus quidem dicta aliquid?</p>
-                <p>Cupiditate itaque minima reprehenderit nam vitae voluptatem, ipsam facere nulla tempore magni delectus porro tenetur nesciunt veniam hic dolores aliquam ipsum expedita vel nobis molestiae omnis. Dolor totam dolorem magni.</p>
-                <p>Enim eveniet totam laborum esse! Nulla ad modi ea possimus, atque dolor ratione iusto magnam eos ipsam nam itaque molestiae dolorum aspernatur exercitationem ex dolorem animi deserunt, repudiandae, natus accusamus.</p>
-            </div>
-        </div>
+<!-- ... existing code ... -->
+
+<div class="tab-body">
+    <div class="active">
+        <h2>Pakigsayud</h2>
+        @foreach($pakigsayudResolutions as $resolution)
+            <p>{{ $resolution->title }} - {{ $resolution->description }}</p>
+            <!-- Add other details you want to display -->
+        @endforeach
+    </div>
+    <div>
+        <h2>Forms/Guides</h2>
+        @foreach($formGuidesResolutions as $resolution)
+            <p>{{ $resolution->title }} - {{ $resolution->description }}</p>
+            <!-- Add other details you want to display -->
+        @endforeach
+    </div>
+    <div>
+        <h2>Downloadable Files</h2>
+        @foreach($downloadableFilesResolutions as $resolution)
+            <p>{{ $resolution->title }} - {{ $resolution->description }}</p>
+            <!-- Add other details you want to display -->
+        @endforeach
+    </div>
+</div>
+
+<!-- ... existing code ... -->
+
 </div> 
 
 

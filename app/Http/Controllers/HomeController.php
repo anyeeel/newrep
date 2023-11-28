@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resolutions;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +27,12 @@ class HomeController extends Controller
         return view('home');
     }
     public function adminHome() {
-        return view('admin-home');
+        // return view('admin-home');
+        $pakigsayudResolutions = Resolutions::where('category', 'pakigsayud')->get();
+        $formGuidesResolutions = Resolutions::where('category', 'forms/guides')->get();
+        $downloadableFilesResolutions = Resolutions::where('category', 'downloadable files')->get();
+    
+        return view('admin-home', compact('pakigsayudResolutions', 'formGuidesResolutions', 'downloadableFilesResolutions'));
     }
+
 }
