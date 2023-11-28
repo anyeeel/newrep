@@ -70,13 +70,17 @@ class ResolutionsController extends Controller
             'category' => 'required',
         ]);
     
-        if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $photoName = time().'.'.$request->photo->extension();
-            $photoPath = $photo->storeAs('photos', $photoName, 'public');
-            $validatedData['photo'] = $photoPath;
-        }
+        // if ($request->hasFile('photo')) {
+        //     $photo = $request->file('photo');
+        //     $photoName = time().'.'.$request->photo->extension();
+        //     $photoPath = $photo->storeAs('photos', $photoName, 'public');
+        //     $validatedData['photo'] = $photoPath;
+        // }
     
+        // In the store method
+        $photoPath = $photo->storeAs('photos', $photoName, 'public');
+        $validatedData['photo'] = $photoPath;
+
         if ($request->hasFile('file_path')) {
             $file = $request->file('file_path');
             $fileExtension = $file->getClientOriginalExtension();
@@ -115,7 +119,7 @@ class ResolutionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Resolutions $resolution)
+    public function show($id)
     {
         $resolution = Resolutions::findOrFail($id);
     
@@ -158,13 +162,17 @@ class ResolutionsController extends Controller
                 // Add validation rules for other fields
             ]);
         
-            if ($request->hasFile('photo')) {
-                $photo = $request->file('photo');
-                $photoName = time().'.'.$request->photo->extension();
-                $photoPath = $photo->storeAs('photos', $photoName, 'public');
-                $validatedData['photo'] = $photoPath;
-            }
+            // if ($request->hasFile('photo')) {
+            //     $photo = $request->file('photo');
+            //     $photoName = time().'.'.$request->photo->extension();
+            //     $photoPath = $photo->storeAs('photos', $photoName, 'public');
+            //     $validatedData['photo'] = $photoPath;
+            // }
             
+            // In the update method
+            $photoPath = $photo->storeAs('photos', $photoName, 'public');
+            $validatedData['photo'] = $photoPath;
+
     //         // Save the uploaded photo
     // if ($request->hasFile('photo')) {
     //     $photoPath = $request->file('photo')->store('images/photos', 'public');
@@ -199,7 +207,7 @@ public function destroy($id)
     // Delete the resolution
     $resolution->delete();
 
-    return response()->json(['success' => true, 'message' => 'Member deleted successfully.']);
+    return response()->json(['success' => true, 'message' => 'Resolution deleted successfully.']);
 } catch (\Exception $e) {
     return response()->json(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
 }

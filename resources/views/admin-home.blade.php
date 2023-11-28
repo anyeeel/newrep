@@ -201,15 +201,15 @@
         <ul class="list-unstyled">
             @foreach($pakigsayudResolutions as $resolution)
                 <li class="media my-4">
-                    @if ($resolution->photo)
-                        <img class="mr-3" src="{{ asset('images/photos/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
-                            class="img-fluid rounded" style="max-width: 150px; max-height: 150px;">
-                    @else
-                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                            style="width: 150px; height: 150px;">
-                            <span class="text-muted">No Photo Available</span>
-                        </div>
-                    @endif
+                @if ($resolution->photo)
+                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                            @else
+                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                                    style="width: 300px; height: 300px;">
+                                        <span class="text-muted">No Photo Available</span>
+                                </div>
+                            @endif
                     <div class="media-body">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
                         <p>{{ $resolution->memorandum_number }}</p>
@@ -234,14 +234,14 @@
                     <!-- Repeat the same structure as above -->
                     <li class="media my-4">
                     @if ($resolution->photo)
-                        <img class="mr-3" src="{{ asset('images/photos/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
-                            class="img-fluid rounded" style="max-width: 150px; max-height: 150px;">
-                    @else
-                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                            style="width: 150px; height: 150px;">
-                            <span class="text-muted">No Photo Available</span>
-                        </div>
-                    @endif
+                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                            @else
+                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                                    style="width: 300px; height: 300px;">
+                                        <span class="text-muted">No Photo Available</span>
+                                </div>
+                            @endif
                     <div class="media-body">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
                         <p>{{ $resolution->memorandum_number }}</p>
@@ -267,14 +267,14 @@
                     <!-- Repeat the same structure as above -->
                     <li class="media my-4">
                     @if ($resolution->photo)
-                        <img class="mr-3" src="{{ asset('images/photos/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
-                            class="img-fluid rounded" style="max-width: 150px; max-height: 150px;">
-                    @else
-                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                            style="width: 150px; height: 150px;">
-                            <span class="text-muted">No Photo Available</span>
-                        </div>
-                    @endif
+                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                            @else
+                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                                    style="width: 300px; height: 300px;">
+                                        <span class="text-muted">No Photo Available</span>
+                                </div>
+                            @endif
                     <div class="media-body">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
                         <p>{{ $resolution->memorandum_number }}</p>

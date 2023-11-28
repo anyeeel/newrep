@@ -37,15 +37,15 @@
                             <h5>Title: {{ $resolution->title }}</h5>
                             
                             @if ($resolution->photo)
-                                <img src="{{ asset('images/photos/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
                             @else
                                 <div class="bg-light d-flex justify-content-center align-items-center rounded"
                                     style="width: 300px; height: 300px;">
-                                    <span class="text-muted">No Photo Available</span>
+                                        <span class="text-muted">No Photo Available</span>
                                 </div>
                             @endif
-
+                            
                             <p>Memorandum Number: {{ $resolution->memorandum_number }}</p>
                             <p>Description: {{ $resolution->description }}</p>
 

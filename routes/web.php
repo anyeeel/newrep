@@ -32,7 +32,7 @@ Route::get('resolutions/create', [App\Http\Controllers\ResolutionsController::cl
 Route::post('resolutions', [App\Http\Controllers\ResolutionsController::class, 'store'])->name('resolutions.store');
 Route::get('/resolutions/{resolution}/edit', [ResolutionsController::class, 'edit'])->name('resolutions.edit');
 Route::delete('/resolutions/{resolution}', [ResolutionsController::class, 'destroy'])->name('resolutions.destroy');
-Route::get('/resolutions/{resolution}', [ResolutionsController::class, 'show'])->name('resolutions.show');
+Route::get('/resolutions/{id}', [ResolutionsController::class, 'show'])->name('resolutions.show');
 // Route::get('/resolutions/dashboard/{category?}', [ResolutionsController::class, 'dashboard'])->name('admin.home');
 // Route::get('/user/dashboard', [HomeController::class, 'userDashboard'])->name('user.dashboard');
 
