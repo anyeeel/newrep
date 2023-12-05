@@ -203,7 +203,7 @@
                             @endif
                     <div class="media-body">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <p>{{ $resolution->memorandum_number }}</p>
+                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
                         <p>{{ $resolution->description }}</p>
                         <div class="mt-3">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
@@ -235,7 +235,7 @@
                             @endif
                     <div class="media-body">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <p>{{ $resolution->memorandum_number }}</p>
+                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
                         <p>{{ $resolution->description }}</p>
                         <div class="mt-3">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
@@ -268,7 +268,7 @@
                             @endif
                     <div class="media-body">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <p>{{ $resolution->memorandum_number }}</p>
+                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
                         <p>{{ $resolution->description }}</p>
                         <div class="mt-3">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>

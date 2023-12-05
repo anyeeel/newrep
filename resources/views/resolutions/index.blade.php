@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <title>Resolutions and Issuances / List</title>
 </head>
 <body>
@@ -45,7 +46,7 @@
                                     <th>#</th>
                                     <th>Title</th>
                                     <th>Photo</th>
-                                    <th>Memorandum Number</th>
+                                    <!-- <th>Memorandum Number</th> -->
                                     <th>Description</th>
                                     <th>File Path</th>
                                     <th>Category</th>
@@ -70,7 +71,7 @@
                                         @endif
 
                                         </td>
-                                        <td>{{ $resolution->memorandum_number }}</td>
+                                        <!-- <td>{{ $resolution->memorandum_number }}</td> -->
                                         <td>{{ $resolution->description }}</td>
                                         <td>
                                             @if ($resolution->file_path)

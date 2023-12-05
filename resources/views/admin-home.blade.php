@@ -183,6 +183,51 @@
     <!-- /.sidebar -->
   </aside>
 
+  <!-- <div class="search-bar">
+    <div class="input-group">
+        <input id="search-input" class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#filterModal">
+                <i class="fas fa-filter"></i>
+            </button>
+        </div>
+    </div>
+</div> -->
+
+<!-- Filter Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Filters</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your filter options here -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="filterOption1">
+                    <label class="form-check-label" for="filterOption1">
+                        Filter Option 1
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="filterOption2">
+                    <label class="form-check-label" for="filterOption2">
+                        Filter Option 2
+                    </label>
+                </div>
+                <!-- Add more filter options as needed -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+</div>
+
   <div class="tabs">
     <div class="title">BOD Resolutions and Issuances</div>
         <div class="tab-header">
@@ -198,9 +243,9 @@
 <div class="tab-body">
     <div class="active">
         <h2>Pakigsayud</h2>
-        <ul class="list-unstyled">
+        <!-- <ul class="list-unstyled"> -->
             @foreach($pakigsayudResolutions as $resolution)
-                <li class="media my-4">
+                <li class="media-box">
                 @if ($resolution->photo)
                                 <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
@@ -210,11 +255,11 @@
                                         <span class="text-muted">No Photo Available</span>
                                 </div>
                             @endif
-                    <div class="media-body">
+                    <div class="content">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <p>{{ $resolution->memorandum_number }}</p>
+                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
                         <p>{{ $resolution->description }}</p>
-                        <div class="mt-3">
+                        <div class="actions">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
                             <!-- Assuming your download link leads to the file_path -->
                             <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning">Edit</a>
@@ -229,11 +274,10 @@
     <!-- Forms/Guides Category -->
     <div>
         <h2>Forms/Guides</h2>
-        <ul class="list-unstyled">
+        <!-- <ul class="list-unstyled"> -->
             @foreach($formGuidesResolutions as $resolution)
-                <li class="media my-4">
                     <!-- Repeat the same structure as above -->
-                    <li class="media my-4">
+                    <li class="media-box">
                     @if ($resolution->photo)
                                 <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
@@ -243,12 +287,13 @@
                                         <span class="text-muted">No Photo Available</span>
                                 </div>
                             @endif
-                    <div class="media-body">
+                    <div class="content">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <p>{{ $resolution->memorandum_number }}</p>
+                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
                         <p>{{ $resolution->description }}</p>
-                        <div class="mt-3">
+                        <div class="actions">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
+                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning">Edit</a>
                             <!-- Assuming your download link leads to the file_path -->
                             <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
                         </div>
@@ -262,11 +307,10 @@
     <!-- Downloadable Files Category -->
     <div>
         <h2>Downloadable Files</h2>
-        <ul class="list-unstyled">
+        <!-- <ul class="list-unstyled"> -->
             @foreach($downloadableFilesResolutions as $resolution)
-                <li class="media my-4">
                     <!-- Repeat the same structure as above -->
-                    <li class="media my-4">
+                    <li class="media-box">
                     @if ($resolution->photo)
                                 <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
@@ -276,12 +320,13 @@
                                         <span class="text-muted">No Photo Available</span>
                                 </div>
                             @endif
-                    <div class="media-body">
+                    <div class="content">
                         <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <p>{{ $resolution->memorandum_number }}</p>
+                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
                         <p>{{ $resolution->description }}</p>
-                        <div class="mt-3">
+                        <div class="actions">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
+                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning">Edit</a>
                             <!-- Assuming your download link leads to the file_path -->
                             <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
                         </div>
@@ -307,6 +352,30 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+<!-- <script>
+  function applyFilters() {
+        // Get selected filter options and perform filtering logic
+        const filterOption1 = document.getElementById('filterOption1').checked;
+        const filterOption2 = document.getElementById('filterOption2').checked;
+
+        // Add your logic to filter based on selected options
+
+        // Close the modal after applying filters
+        $('#filterModal').modal('hide');
+    }
+
+    // Handle search functionality
+    document.getElementById('search-input').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+
+        // Add your logic to filter content based on the search term
+        // You might want to make an AJAX request to your backend for dynamic searching
+
+        // Example: Filtering content with jQuery
+        $('.tab-body div').hide().filter(':contains(' + searchTerm + ')').show();
+    });
+</script> -->
 
 <!-- jQuery -->
 <script src="{{asset('backend')}}/plugins/jquery/jquery.min.js"></script>

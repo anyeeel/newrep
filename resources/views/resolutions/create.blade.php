@@ -47,10 +47,10 @@
                                     <input id="title" type="text" class="form-control" name="title">
                                 </div>
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="memorandum_number">{{ __('Memorandum Number') }}</label>
                                     <input id="memorandum_number" type="text" class="form-control" name="memorandum_number">
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label for="description">{{ __('Description') }}</label>

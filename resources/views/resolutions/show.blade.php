@@ -34,9 +34,8 @@
 
                         <!-- Display PDF file -->
                         <div>
-                            <h5>Title: {{ $resolution->title }}</h5>
                             
-                            @if ($resolution->photo)
+                            <!-- @if ($resolution->photo)
                                 <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
                             @else
@@ -44,12 +43,15 @@
                                     style="width: 300px; height: 300px;">
                                         <span class="text-muted">No Photo Available</span>
                                 </div>
-                            @endif
-                            
-                            <p>Memorandum Number: {{ $resolution->memorandum_number }}</p>
-                            <p>Description: {{ $resolution->description }}</p>
+                            @endif -->
 
-                            <p>Category: {{ $resolution->category }}</p>
+
+                            <div class="details-container">
+        <h5 class="text-center title">{{ $resolution->title }}</h5>
+        <!-- <p>Memorandum Number: {{ $resolution->memorandum_number }}</p> -->
+        <p class="text-justify description">{{ $resolution->description }}</p>
+</div>
+
                             
                             <!-- Display PDF file using iframe -->
                             @if ($resolution->file_path)
