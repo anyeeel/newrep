@@ -1,0 +1,211 @@
+
+
+.header {
+    
+    flex-shrink: 0;
+    background-color: #F4F3FF !important; /* Background color */
+    box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 0;
+    margin: 0 !important;
+}
+
+.main-header {
+    
+    background-color: rgb(255, 255, 255);
+    z-index: 1034;
+    margin: 0 !important;
+    animation: none;
+}
+
+    .menu{
+    height: 60px;
+    flex-shrink: 0;
+    background: #941E1E;
+    padding: 0% !important;
+    margin: 0;
+    }
+    
+    .logo {
+        max-width: 10%; /* Adjust the max-width to make the logo smaller */
+        max-height: 10%; /* Adjust the max-height to make the logo smaller */
+        float: left;
+        position: relative;
+        z-index: 1;
+        left: 80px;
+        top: -15px;
+    }
+    
+    .nmpc {
+        margin-left: 250px !important;
+        color: #004AAD;
+    font-family: Inika;
+    font-size: 25px;
+    font-style: normal;
+    margin: 40px;
+    font-weight: 700;
+    line-height: normal;
+    }
+
+    .user-image{
+        max-width: 10%; /* Adjust the max-width to make the logo smaller */
+        max-height: 10%; /* Adjust the max-height to make the logo smaller */
+        float: left;
+        position: absolute;
+        z-index: 1;
+        left: 1300px;
+        top: 40px;
+    }
+
+    .img-circle {
+        border-radius: 50%;
+        width: 60px;
+    }
+
+    .info {
+        color: #004AAD;
+        position: absolute;
+        text-align: right;
+        font-family: Inter;
+        left: 1250px;
+        top: 60px;
+        font-size: 15px;
+        font-style: normal;
+        padding: 0;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    a .nav-link{
+        display: inline;
+        text-align: center;
+    }
+   
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #941E1E;
+        text-align: center;
+        display: flex; /* Use flexbox to center horizontally */
+        justify-content: center;
+      }
+      
+      li {
+        float: left;
+        display: inline;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      /* Change the link color to #111 (black) on hover */
+      li a:hover {
+        background-color: #723B3B;
+        color: black;
+      }
+    
+    .nav-item p {
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    .tabs .title {
+        padding: 20px 10px 50px; /* Adjust the padding values */
+    text-align: center;
+    color: #fff;
+    background: #941E1E;
+    font-size: 1.5rem; /* Adjust the font size */
+    }
+
+    /* Tabs */
+  
+
+    .media-box {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s;
+    }
+
+    .media-box:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .tabs .tab-body > div {
+        position: absolute;
+        width: 900px;
+        padding: 20px;
+        background-color: aliceblue;
+        /* opacity: 0; */
+        top: -100vh;
+    }
+
+    .category-title {
+        padding: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+    
+    .resolutions-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .resolution-item {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+    }
+    
+    .resolution-photo {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    .no-photo-placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        background: #eee;
+    }
+    
+    .resolution-details {
+        padding: 15px;
+    }
+    
+    .resolution-title {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    
+    .resolution-description {
+        color: #555;
+    }
+    
+    .resolution-actions {
+        margin-top: 15px;
+    }
+    
+    .btn {
+        margin-right: 10px;
+    }
+
+    .cont li {
+        border: 3px solid #000000; /* Adjust the border style as needed */
+        margin-bottom: 15px; /* Add space between each item */
+        padding: 15px; /* Add padding for a better visual appearance */
+      }

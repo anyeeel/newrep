@@ -35,7 +35,7 @@
                         <!-- Display PDF file -->
                         <div>
                             
-                            <!-- @if ($resolution->photo)
+                            @if ($resolution->photo)
                                 <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
                             @else
@@ -43,7 +43,7 @@
                                     style="width: 300px; height: 300px;">
                                         <span class="text-muted">No Photo Available</span>
                                 </div>
-                            @endif -->
+                            @endif
 
 
                             <div class="details-container">

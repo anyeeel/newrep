@@ -59,13 +59,13 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+        <a class="nav-link" data-widget="navbar-search" href="#"  role="button">
           <i class="fas fa-search"></i>
         </a>
         <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control form-control-navbar" type="search" id="search" placeholder="Search" aria-label="Search">
               <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
                   <i class="fas fa-search"></i>
@@ -78,6 +78,8 @@
           </form>
         </div>
       </li>
+
+
 
 
       <!-- <li class="nav-item dropdown">
@@ -244,6 +246,7 @@
     <div class="active">
         <h2>Pakigsayud</h2>
         <!-- <ul class="list-unstyled"> -->
+          <div class="cont">
             @foreach($pakigsayudResolutions as $resolution)
                 <li class="media-box">
                 @if ($resolution->photo)
@@ -270,6 +273,7 @@
             @endforeach
         </ul>
     </div>
+</div>
 
     <!-- Forms/Guides Category -->
     <div>
@@ -376,6 +380,26 @@
         $('.tab-body div').hide().filter(':contains(' + searchTerm + ')').show();
     });
 </script> -->
+
+<!-- Add this script tag if you haven't included jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Add this script in the head or at the end of the body section -->
+<script>
+  $(document).ready(function () {
+    // Toggle the search bar when the search link is clicked
+    $('#search').on('click', function (e) {
+      e.preventDefault();
+      $('.navbar-search-block').toggle(); // Show/hide the search bar
+    });
+
+    // Close the search bar when the close button is clicked
+    $('.btn-navbar[data-widget="navbar-search"]').on('click', function () {
+      $('.navbar-search-block').hide();
+    });
+  });
+</script>
+
 
 <!-- jQuery -->
 <script src="{{asset('backend')}}/plugins/jquery/jquery.min.js"></script>

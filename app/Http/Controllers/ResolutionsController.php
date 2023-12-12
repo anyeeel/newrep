@@ -78,8 +78,17 @@ class ResolutionsController extends Controller
         // }
     
         // In the store method
-        $photoPath = $photo->storeAs('photos', $photoName, 'public');
-        $validatedData['photo'] = $photoPath;
+// In the store method
+
+if ($request->hasFile('photo')) {
+    $photo = $request->file('photo'); // Define $photo variable
+
+    // Your photo upload and storage code here
+    $photoName = time().'.'.$photo->extension();
+    $photoPath = $photo->storeAs('photos', $photoName, 'public');
+
+    $validatedData['photo'] = $photoPath;
+}
 
         if ($request->hasFile('file_path')) {
             $file = $request->file('file_path');

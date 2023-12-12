@@ -37,29 +37,28 @@
 
                             <!-- Resolution Info Section -->
                             <div id="section1">
-                            <div class="card-header bg-dark text-white mb-3">
-                                <h7 class="mb-0">{{ __('Resolution Information') }}</h7>
-                            </div>
-
+                                <div class="card-header bg-dark text-white">
+                                    <h7 class="mb-0">{{ __('Resolution Information') }}</h7>
+                                </div><br>
 
                                 <div class="form-group">
                                     <label for="title">{{ __('Title') }}</label>
                                     <input id="title" type="text" class="form-control" name="title">
                                 </div>
 
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label for="memorandum_number">{{ __('Memorandum Number') }}</label>
                                     <input id="memorandum_number" type="text" class="form-control" name="memorandum_number">
-                                </div> -->
+                                </div>
 
                                 <div class="form-group">
                                     <label for="description">{{ __('Description') }}</label>
-                                    <textarea id="description" class="form-control" name="description" rows="4"></textarea>
+                                    <textarea id="description" class="form-control" name="description"></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="photo">{{ __('Photo') }}</label>
-                                    <input id="photo" type="file" class="form-control" name="photo" accept="image/*">
+                                    <input id="photo" type="file" class="form-control" name="photo">
                                 </div>
 
 
@@ -75,8 +74,7 @@
 
                                 <div class="form-group">
                                     <label for="file_path">{{ __('File Upload') }}</label>
-                                    <input id="file_path" type="file" class="form-control" name="file_path" accept=".pdf, .doc, .docx">
-                                </div>
+                                    <input id="file_path" type="file" class="form-control" name="file_path">
 
                             <!-- Submit button -->
                             <div class="form-group mt-5 d-flex justify-content-between">
