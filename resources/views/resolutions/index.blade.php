@@ -6,6 +6,39 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <title>Resolutions and Issuances / List</title>
 </head>
+
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+    }
+    .custom-title-color {
+        color: #9C0D0F; /* Set the desired font color */
+    }
+
+    .custom-font-weight {
+        font-weight: 501; /* Set the desired font weight */
+        margin-bottom: 1px;
+    }
+
+    .custom-category {
+        margin-bottom: 1px;
+        font-size: 16px;
+    }
+
+    .custom-date {
+        font-size: 16pxpx;
+        font-weight: 300;
+    }
+    
+    .custom-content {
+        width: 80%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the div */
+        border: 1px solid #ddd; /* Add a border */
+        padding: 20px; /* Add padding as needed */
+    }
+</style>
+
+
 <body>
 
 @extends('layouts.datatable')
@@ -30,7 +63,7 @@
 </section>
 
 <!-- Main content -->
-<div class="content">
+<div class="content custom-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -40,69 +73,54 @@
                             <i class="fas fa-plus-circle"></i> Add Resolution/Issuance
                         </a>
 
-                        <table class="table" id="advancedDataTable">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Title</th>
-                                    <th>Photo</th>
-                                    <!-- <th>Memorandum Number</th> -->
-                                    <th>Description</th>
-                                    <th>File Path</th>
-                                    <th>Category</th>
-                                    <th>Date Created</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($resolutions as $resolution)
-                                    <tr>
-                                        <td>{{ $resolution->id }}</td>
-                                        <td>{{ $resolution->title }}</td>
-                                        <td>
-                                        @if ($resolution->photo)
-                                            <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
-                                                class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
-                                        @else
-                                            <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                                                style="width: 300px; height: 300px;">
-                                                <span class="text-muted">No Photo Available</span>
+                        <ul class="list-unstyled">
+                            @forelse($resolutions as $resolution)
+                                <li>
+                                    <div class="card mb-3">
+                                        <div class="row g-0">
+                                            <div class="col-md-4 d-flex align-items-center">
+                                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                                    class="img-fluid rounded" style="max-width: 200px; max-height: 200px; padding-left: 2rem;">
                                             </div>
-                                        @endif
+                                            <div class="col-md-6">
+                                                <div class="card-body"  style="padding-left: 20px;">
+                                                    <h5 class="card-title custom-title-color">{{ $resolution->title }}</h5>
+                                                    <!-- <p class="card-text">{{ $resolution->description }}</p> -->
+                                                    <p class="card-text custom-font-weight">Memorandum No. {{ $resolution->memorandum_number }}</p>
+                                                    <!-- <p class="card-text custom-category"> {{ $resolution->category }}</p> -->
+                                                    <p class="card-text custom-date">Date Created: {{ $resolution->created_at }}</p>
+                                                    <!-- <p class="card-text">File Path:
+                                                        @if ($resolution->file_path)
+                                                            <a href="{{ asset('storage/' . $resolution->file_path) }}" target="_blank">{{ $resolution->file_path }}</a>
+                                                        @else
+                                                            No file
+                                                        @endif
+                                                    </p> -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 d-flex justify-content-end">
+                                                <div class="d-flex" style="padding-right: 20px; padding-bottom: 20px;">
+                                                    <!-- <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary btn-sm">
+                                                        View
+                                                    </a> -->
+                                                    <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-success btn-sm">
+                                                        Edit
+                                                    </a>
+                                                    <button class="btn btn-danger btn-sm delete-btn" data-resolution-id="{{ $resolution->id }}">
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </div>
 
-                                        </td>
-                                        <!-- <td>{{ $resolution->memorandum_number }}</td> -->
-                                        <td>{{ $resolution->description }}</td>
-                                        <td>
-                                            @if ($resolution->file_path)
-                                                <a href="{{ asset('storage/' . $resolution->file_path) }}" target="_blank">{{ $resolution->file_path }}</a>
-                                            @else
-                                                No file
-                                            @endif
-                                        </td>
-                                        <td>{{ $resolution->category }}</td>
-                                        <td>{{ $resolution->created_at }}</td>
-                                        <td>
-                                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
+                                    </div>
+                                </li>
+                            @empty
+                                <li>No resolutions/issuances found.</li>
+                            @endforelse
+                        </ul>
 
-                                            <!-- Delete Button with SweetAlert Confirmation -->
-                                            <button class="btn btn-danger btn-sm delete-btn" data-resolution-id="{{ $resolution->id }}">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="8">No resolutions/issuances found.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+
+
                     </div>
                     <!-- /.card-body -->
                 </div>

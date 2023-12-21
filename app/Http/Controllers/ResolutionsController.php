@@ -26,25 +26,6 @@ class ResolutionsController extends Controller
         return view('resolutions.index', compact('resolutions')); // Adjusted path
     }
 
-    // public function index($category = null)
-    // {
-    //     $resolutions = ($category)
-    //         ? Resolutions::where('category', $category)->get()
-    //         : Resolutions::all();
-
-    //     return view('admin-home', compact('resolutions', 'category'));
-    // }
-       
-//     public function index()
-// {
-
-//     $pakigsayudResolutions = Resolutions::where('category', 'Pakigsayud')->get();
-//     $formGuidesResolutions = Resolutions::where('category', 'Forms/Guides')->get();
-//     $downloadableFilesResolutions = Resolutions::where('category', 'Downloadable files')->get();
-
-//     return view('resolutions.index', compact('pakigsayudResolutions', 'formGuidesResolutions', 'downloadableFilesResolutions'));
-// }
-
 
     /**
      * Show the form for creating a new resource.
@@ -69,61 +50,38 @@ class ResolutionsController extends Controller
             'file_path' => 'nullable|mimes:pdf,doc,docx', // Allowing PDF, DOC, and DOCX file formats
             'category' => 'required',
         ]);
-    
-        // if ($request->hasFile('photo')) {
-        //     $photo = $request->file('photo');
-        //     $photoName = time().'.'.$request->photo->extension();
-        //     $photoPath = $photo->storeAs('photos', $photoName, 'public');
-        //     $validatedData['photo'] = $photoPath;
-        // }
-    
-        // In the store method
-// In the store method
 
-if ($request->hasFile('photo')) {
-    $photo = $request->file('photo'); // Define $photo variable
+                // In the store method
 
-    // Your photo upload and storage code here
-    $photoName = time().'.'.$photo->extension();
-    $photoPath = $photo->storeAs('photos', $photoName, 'public');
+                if ($request->hasFile('photo')) {
+                    $photo = $request->file('photo'); // Define $photo variable
 
-    $validatedData['photo'] = $photoPath;
-}
+                    // Your photo upload and storage code here
+                    $photoName = time().'.'.$photo->extension();
+                    $photoPath = $photo->storeAs('photos', $photoName, 'public');
 
-        if ($request->hasFile('file_path')) {
-            $file = $request->file('file_path');
-            $fileExtension = $file->getClientOriginalExtension();
-            $fileName = 'resolution_' . time() . '.' . $fileExtension;
-            $filePath = $file->storeAs('files', $fileName, 'public');
-            $validatedData['file_path'] = $filePath;
-        }
-    
-        
-        // Create a new resolution
-        $resolution = \App\Models\Resolutions::create($validatedData);
-          // Fetch all resolutions
-    
-        // Redirect to the index view with a success message
-        return redirect()->route('resolutions.index')->with('success', 'Resolution created successfully.');
-        // return redirect()->route('admin.home', ['category' => $request->category])->with('success', 'Resolution created successfully.');
+                    $validatedData['photo'] = $photoPath;
+                }
 
-    }
+                        if ($request->hasFile('file_path')) {
+                            $file = $request->file('file_path');
+                            $fileExtension = $file->getClientOriginalExtension();
+                            $fileName = 'resolution_' . time() . '.' . $fileExtension;
+                            $filePath = $file->storeAs('files', $fileName, 'public');
+                            $validatedData['file_path'] = $filePath;
+                        }
+                    
+                        
+                        // Create a new resolution
+                        $resolution = \App\Models\Resolutions::create($validatedData);
+                        // Fetch all resolutions
+                    
+                        // Redirect to the index view with a success message
+                        return redirect()->route('resolutions.index')->with('success', 'Resolution created successfully.');
+                        // return redirect()->route('admin.home', ['category' => $request->category])->with('success', 'Resolution created successfully.');
 
-    // Inside ResolutionsController
-// Inside ResolutionsController
-// public function dashboard($category = null)
-// {
-//     // Fetch resolutions based on the selected category
-//     $resolutions = ($category)
-//         ? \App\Models\Resolutions::where('category', $category)->get()
-//         : \App\Models\Resolutions::all();
-
-//     // Pass resolutions and selected category to the view
-//     return view('admin.home', compact('resolutions', 'category'));
-// }
-
-      
-    
+                    }
+          
 
     /**
      * Display the specified resource.
@@ -155,51 +113,59 @@ if ($request->hasFile('photo')) {
      */
     public function update(Request $request, $id)
     {
-        // Validation rules
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'memorandum_number' => 'required|unique:resolutions,memorandum_number,' . $id,
             'description' => 'required',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Photo validation
-            'document' => 'nullable|mimes:pdf,doc,docx|max:2048', // Document validation
-            // Add other validation rules as necessary
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'document' => 'nullable|mimes:pdf,doc,docx|max:2048',
         ]);
-    
-        // Find the resolution by ID
+
         $resolution = \App\Models\Resolutions::findOrFail($id);
-            $request->validate([
-                // Add validation rules for other fields
-            ]);
-        
-            // if ($request->hasFile('photo')) {
-            //     $photo = $request->file('photo');
-            //     $photoName = time().'.'.$request->photo->extension();
-            //     $photoPath = $photo->storeAs('photos', $photoName, 'public');
-            //     $validatedData['photo'] = $photoPath;
-            // }
-            
-            // In the update method
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $photoName = time().'.'.$request->photo->extension();
             $photoPath = $photo->storeAs('photos', $photoName, 'public');
             $validatedData['photo'] = $photoPath;
+        }
 
-    //         // Save the uploaded photo
-    // if ($request->hasFile('photo')) {
-    //     $photoPath = $request->file('photo')->store('images/photos', 'public');
-    //     $resolution->photo = basename($photoPath);
-    // }
-    
-        // Handle the uploaded document if it exists
         if ($request->hasFile('document')) {
-            $documentPath = $request->file('document')->store('documents'); // Adjust the storage path as needed
-            // Update the resolution's document path in the database
+            $documentPath = $request->file('document')->store('documents');
             $resolution->document = $documentPath;
         }
-    
-        // Update the resolution with validated data
+
         $resolution->update($validatedData);
-    
+
         return redirect()->route('resolutions.index')->with('success', 'Resolution updated successfully.');
     }
+
+            // $request->validate([
+            //     // Add validation rules for other fields
+            // ]);
+        
+            
+    //         // In the update method
+    //         $photoPath = $photo->storeAs('photos', $photoName, 'public');
+    //         $validatedData['photo'] = $photoPath;
+
+    // //         // Save the uploaded photo
+    // // if ($request->hasFile('photo')) {
+    // //     $photoPath = $request->file('photo')->store('images/photos', 'public');
+    // //     $resolution->photo = basename($photoPath);
+    // // }
+    
+    //     // Handle the uploaded document if it exists
+    //     if ($request->hasFile('document')) {
+    //         $documentPath = $request->file('document')->store('documents'); // Adjust the storage path as needed
+    //         // Update the resolution's document path in the database
+    //         $resolution->document = $documentPath;
+    //     }
+    
+    //     // Update the resolution with validated data
+    //     $resolution->update($validatedData);
+    
+    //     return redirect()->route('resolutions.index')->with('success', 'Resolution updated successfully.');
     
     
     

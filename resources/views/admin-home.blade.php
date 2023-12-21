@@ -32,7 +32,54 @@
   <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+      
+  .custom-card {
+    max-width: 50rem;
+    margin: 0 auto;
+    margin-top: 10rem;
+  }
+
+  #custom-active {
+            width: 50rem; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the div */
+        border: 1px solid #ddd; /* Add a border */
+        padding: 20px; /* Add padding as needed */
+        background: #9C0D0F;     
+  }
+
+  .card1 {
+    background: #fff;
+    padding: 2px 2px 2px 2px;     
+
+  }
+
+  .memo {
+        font-weight: 550; /* Set the desired font weight */
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+  .custom-description {
+        font-weight: 400; /* Set the desired font weight */
+        margin-bottom: 2rem;
+        font-size: 14px;
+    }
+
+    .custom-date {
+        font-weight: 300; /* Set the desired font weight */
+        font-size: 12px;
+        margin-right: 9rem;
+        margin-top: 1rem;
+    }
+
+</style>
+
+<body class="hold-transition sidebar-mini layout-fixed" id = "custom-body">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -196,42 +243,10 @@
     </div>
 </div> -->
 
-<!-- Filter Modal -->
-<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="filterModalLabel">Filters</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Add your filter options here -->
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="filterOption1">
-                    <label class="form-check-label" for="filterOption1">
-                        Filter Option 1
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="filterOption2">
-                    <label class="form-check-label" for="filterOption2">
-                        Filter Option 2
-                    </label>
-                </div>
-                <!-- Add more filter options as needed -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+<div class="card custom-card">
   <div class="tabs">
-    <div class="title">BOD Resolutions and Issuances</div>
+    <!-- <div class="title">BOD Resolutions and Issuances</div> -->
+
         <div class="tab-header">
             <div class="active">Pakigsayud</div>
             <div>Forms/Guides</div>
@@ -240,112 +255,159 @@
         <div class="tab-indicator">
             <div></div>
         </div>
-<!-- ... existing code ... -->
 
-<div class="tab-body">
-    <div class="active">
-        <h2>Pakigsayud</h2>
-        <!-- <ul class="list-unstyled"> -->
-          <div class="cont">
-            @foreach($pakigsayudResolutions as $resolution)
-                <li class="media-box">
-                @if ($resolution->photo)
-                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
-                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
-                            @else
-                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                                    style="width: 300px; height: 300px;">
-                                        <span class="text-muted">No Photo Available</span>
-                                </div>
-                            @endif
-                    <div class="content">
-                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
-                        <p>{{ $resolution->description }}</p>
-                        <div class="actions">
-                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
-                            <!-- Assuming your download link leads to the file_path -->
-                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning">Edit</a>
-                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+
+    <div class="tab-body">
+        <div class="active" id="custom-active">
+            <!-- <h2>Pakigsayud</h2> -->
+            <!-- <ul class="list-unstyled"> -->
+              <div class="cont">
+                
+                <ul class="list-unstyled">
+                <!-- <div class="card1"> -->
+    @foreach($pakigsayudResolutions as $resolution)
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex align-items-center">
+                    @if ($resolution->photo)
+                        <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                            class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                    @else
+                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                            style="width: 150px; height: 150px;">
+                                <span class="text-muted">No Photo Available</span>
                         </div>
+                    @endif
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body custom-card-body" style="padding-left: 20px;">
+                        <h5 class="card-title mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <p class="card-text memo">Memorandum No. {{ $resolution->memorandum_number }}</p>
+                        <p class="card-text custom-description">{{ $resolution->description }}</p>
+                        <!-- <p class="card-text custom-date">Date Created: {{ $resolution->created_at }}</p> -->
                     </div>
-                </li>
-            @endforeach
-        </ul>
+                    <div class="col-md-12 d-flex justify-content-end">
+                    <p class="card-text custom-date">Date Created: {{ $resolution->created_at }}</p>
+
+                          <div class="d-flex" style="padding-right: 20px; padding-bottom: 20px;">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-warning btn-sm">
+                                 View
+                            </a>
+                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-success btn-sm">
+                                Edit
+                            </a>
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-info btn-sm" download>
+                                Download
+                            </a>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+<!-- </div> -->
+
+            </ul>
+            
+        </div>
     </div>
-</div>
 
     <!-- Forms/Guides Category -->
-    <div>
-        <h2>Forms/Guides</h2>
-        <!-- <ul class="list-unstyled"> -->
-            @foreach($formGuidesResolutions as $resolution)
-                    <!-- Repeat the same structure as above -->
-                    <li class="media-box">
+    <div id="custom-active">
+        <!-- <h2>Forms/Guides</h2> -->
+        <ul class="list-unstyled">
+        <!-- <div class="card1"> -->
+    @foreach($formGuidesResolutions as $resolution)
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex align-items-center">
                     @if ($resolution->photo)
-                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
-                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
-                            @else
-                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                                    style="width: 300px; height: 300px;">
-                                        <span class="text-muted">No Photo Available</span>
-                                </div>
-                            @endif
-                    <div class="content">
-                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
-                        <p>{{ $resolution->description }}</p>
-                        <div class="actions">
-                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
-                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning">Edit</a>
-                            <!-- Assuming your download link leads to the file_path -->
-                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+                        <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                            class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                    @else
+                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                            style="width: 150px; height: 150px;">
+                                <span class="text-muted">No Photo Available</span>
                         </div>
+                    @endif
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body custom-card-body" style="padding-left: 20px;">
+                        <h5 class="card-title mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <!-- <p class="card-text">{{ $resolution->memorandum_number }}</p> -->
+                        <p class="card-text">{{ $resolution->description }}</p>
                     </div>
-                </li>
-                </li>
-            @endforeach
+                    <div class="col-md-12 d-flex justify-content-end">
+                          <div class="d-flex" style="padding-right: 20px; padding-bottom: 20px;">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-warning btn-sm">
+                                 View
+                            </a>
+                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-success btn-sm">
+                                Edit
+                            </a>
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-info btn-sm" download>
+                                Download
+                            </a>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+<!-- </div> -->
+
         </ul>
     </div>
 
     <!-- Downloadable Files Category -->
-    <div>
-        <h2>Downloadable Files</h2>
-        <!-- <ul class="list-unstyled"> -->
-            @foreach($downloadableFilesResolutions as $resolution)
-                    <!-- Repeat the same structure as above -->
-                    <li class="media-box">
+    <div id="custom-active">
+        <!-- <h2>Downloadable Files</h2> -->
+        <ul class="list-unstyled">
+        <!-- <div class="card1"> -->
+    @foreach($downloadableFilesResolutions as $resolution)
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex align-items-center">
                     @if ($resolution->photo)
-                                <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
-                                    class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
-                            @else
-                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                                    style="width: 300px; height: 300px;">
-                                        <span class="text-muted">No Photo Available</span>
-                                </div>
-                            @endif
-                    <div class="content">
-                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
-                        <p>{{ $resolution->description }}</p>
-                        <div class="actions">
-                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
-                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-warning">Edit</a>
-                            <!-- Assuming your download link leads to the file_path -->
-                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
+                        <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                            class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                    @else
+                        <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                            style="width: 150px; height: 150px;">
+                                <span class="text-muted">No Photo Available</span>
                         </div>
+                    @endif
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body custom-card-body" style="padding-left: 20px;">
+                        <h5 class="card-title mt-0 mb-1">{{ $resolution->title }}</h5>
+                        <!-- <p class="card-text">{{ $resolution->memorandum_number }}</p> -->
+                        <p class="card-text">{{ $resolution->description }}</p>
                     </div>
-                </li>
-                </li>
-            @endforeach
+                        <div class="col-md-12 d-flex justify-content-end">
+                          <div class="d-flex" style="padding-right: 20px; padding-bottom: 20px;">
+                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-warning btn-sm">
+                                 View
+                            </a>
+                            <a href="{{ route('resolutions.edit', $resolution->id) }}" class="btn btn-success btn-sm">
+                                Edit
+                            </a>
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-info btn-sm" download>
+                                Download
+                            </a>
+                          </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+<!-- </div> -->
+
         </ul>
     </div>
+  </div>
 </div>
 
-
-<!-- ... existing code ... -->
-
-</div> 
 
 
 

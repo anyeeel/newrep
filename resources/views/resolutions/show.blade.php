@@ -48,7 +48,7 @@
 
                             <div class="details-container">
         <h5 class="text-center title">{{ $resolution->title }}</h5>
-        <!-- <p>Memorandum Number: {{ $resolution->memorandum_number }}</p> -->
+        <p>{{ $resolution->memorandum_number }}</p>
         <p class="text-justify description">{{ $resolution->description }}</p>
 </div>
 

@@ -32,57 +32,70 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <form id="resolutionForm" method="POST" action="{{ route('resolutions.store') }}" enctype="multipart/form-data">
-                            @csrf
+<!-- Modified Form with Aligned Photo and File Upload on the Right -->
+<form id="resolutionForm" method="POST" action="{{ route('resolutions.store') }}" enctype="multipart/form-data">
+    @csrf
 
-                            <!-- Resolution Info Section -->
-                            <div id="section1">
-                                <div class="card-header bg-dark text-white">
-                                    <h7 class="mb-0">{{ __('Resolution Information') }}</h7>
-                                </div><br>
+    <!-- Resolution Info Section -->
+    <div id="section1">
+        <div class="card-header bg-dark text-white">
+            <h7 class="mb-0">{{ __('Resolution Information') }}</h7>
+        </div><br>
 
-                                <div class="form-group">
-                                    <label for="title">{{ __('Title') }}</label>
-                                    <input id="title" type="text" class="form-control" name="title">
-                                </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="title">{{ __('Title') }}</label>
+                    <input id="title" type="text" class="form-control" name="title">
+                </div>
 
-                                <div class="form-group">
-                                    <label for="memorandum_number">{{ __('Memorandum Number') }}</label>
-                                    <input id="memorandum_number" type="text" class="form-control" name="memorandum_number">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="description">{{ __('Description') }}</label>
-                                    <textarea id="description" class="form-control" name="description"></textarea>
-                                </div>
+                <div class="form-group">
+                    <label for="memorandum_number">{{ __('Memorandum Number') }}</label>
+                    <input id="memorandum_number" type="text" class="form-control" name="memorandum_number">
+                </div>
 
                                 <div class="form-group">
-                                    <label for="photo">{{ __('Photo') }}</label>
-                                    <input id="photo" type="file" class="form-control" name="photo">
-                                </div>
+                    <label for="category">{{ __('Category') }}</label>
+                    <select id="category" class="form-control" name="category">
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="pakigsayud">pakigsayud</option>
+                        <option value="forms/guides">forms/guides</option>
+                        <option value="downloadable files">downloadable files</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">{{ __('Description') }}</label>
+                    <textarea id="description" class="form-control" name="description"></textarea>
+                </div>
 
 
-                                <div class="form-group">
-                                    <label for="category">{{ __('Category') }}</label>
-                                    <select id="category" class="form-control" name="category">
-                                        <option value="" disabled selected>Select a category</option>
-                                        <option value="pakigsayud">pakigsayud</option>
-                                        <option value="forms/guides">forms/guides</option>
-                                        <option value="downloadable files">downloadable files</option>
-                                    </select>
-                                </div>
+            </div>
 
-                                <div class="form-group">
-                                    <label for="file_path">{{ __('File Upload') }}</label>
-                                    <input id="file_path" type="file" class="form-control" name="file_path">
+            <div class="col-md-6">
+                <!-- Modified Photo Upload Section -->
+                <div class="form-group">
+                    <label for="photo">{{ __('Photo') }}</label>
+                    <input id="photo" type="file" class="form-control" name="photo" style="height: fit-content; padding: 0;">
+                </div>
 
-                            <!-- Submit button -->
-                            <div class="form-group mt-5 d-flex justify-content-between">
-                                <a href="{{ route('resolutions.index') }}" class="btn btn-danger"><i class="fas fa-times-circle mr-1"></i>{{ __('Cancel') }}</a>
-                                <button type="reset" class="btn btn-warning"><i class="fas fa-sync-alt mr-1"></i>{{ __('Reset') }}</button>
-                                <button type="submit" class="btn btn-success"><i class="fas fa-check-circle mr-1"></i>Create Resolution</button>
-                            </div>
-                        </form>
+                <!-- Modified File Upload Section -->
+                <div class="form-group">
+                    <label for="file_path">{{ __('File Upload') }}</label>
+                    <input id="file_path" type="file" class="form-control" name="file_path" style="height: fit-content; padding: 0;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit button -->
+        <div class="form-group mt-5 d-flex justify-content-between">
+            <a href="{{ route('resolutions.index') }}" class="btn btn-danger"><i class="fas fa-times-circle mr-1"></i>{{ __('Cancel') }}</a>
+            <button type="reset" class="btn btn-warning"><i class="fas fa-sync-alt mr-1"></i>{{ __('Reset') }}</button>
+            <button type="submit" class="btn btn-success"><i class="fas fa-check-circle mr-1"></i>Create Resolution</button>
+        </div>
+    </div>
+</form>
+
                     </div>
                 </div>
             </div>

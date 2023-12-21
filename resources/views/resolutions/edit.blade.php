@@ -25,7 +25,7 @@
                 <div class="card">
                 <div class="card-header">{{ __('Edit Resolution') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('resolutions.update', ['resolution' => $resolution]) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('resolutions.update', $resolution->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -37,19 +37,28 @@
 
                                 <div class="form-group">
                                     <label for="title">{{ __('Title') }}</label>
-                                    <input id="title" type="text" class="form-control" name="title" value="{{ $resolution->title }}" required>
+                                    <input id="title" type="text" class="form-control" name="title" value="{{ old('title', $resolution->title) }}" required>
                                 </div>
 
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label for="memorandum_number">{{ __('Memorandum Number') }}</label>
                                     <input id="memorandum_number" type="text" class="form-control" name="memorandum_number" value="{{ $resolution->memorandum_number }}" required>
-                                </div> -->
+                                </div>
 
                                 <div class="form-group">
                                     <label for="description">{{ __('Description') }}</label>
-                                    <textarea id="description" class="form-control" name="description" required>{{ $resolution->description }}</textarea>
+                                    <textarea id="description" class="form-control" name="description" value="{{ old('description', $resolution->description) }}" required></textarea>
                                 </div>
 
+                                @if ($resolution->photo)
+                                            <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
+                                                class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
+                                        @else
+                                            <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                                                style="width: 300px; height: 300px;">
+                                                <span class="text-muted">No Photo Available</span>
+                                            </div>
+                                        @endif
                                 <div class="form-group">
                                     <label for="photo">{{ __('Photo') }}</label>
                                     <input id="photo" type="file" class="form-control" name="photo">
@@ -57,7 +66,7 @@
 
                                 <div class="form-group">
                                     <label for="category">{{ __('Category') }}</label>
-                                    <select id="category" class="form-control" name="category" required>
+                                    <select id="category" class="form-control" name="category" value="{{ old('category', $resolution->category) }}">
                                         <option value="" disabled>Select a category</option>
                                         <option value="pakigsayud" {{ $resolution->category == 'pakigsayud' ? 'selected' : '' }}>pakigsayud</option>
                                         <option value="forms/guides" {{ $resolution->category == 'forms/guides' ? 'selected' : '' }}>forms/guides</option>
@@ -67,7 +76,7 @@
 
                                 <div class="form-group">
                                     <label for="file_path">{{ __('File Upload') }}</label>
-                                    <input id="file_path" type="file" class="form-control" name="file_path">
+                                    <input id="file_path" type="file" class="form-control" name="file_path" value="{{ old('document', $resolution->document) }}">
                                 </div>
 
                                 <!-- Submit button -->
