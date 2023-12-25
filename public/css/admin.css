@@ -53,7 +53,7 @@
         position: absolute;
         z-index: 1;
         left: 1300px;
-        top: 40px;
+        top: 2%;
     }
 
     .img-circle {
@@ -67,7 +67,7 @@
         text-align: right;
         font-family: Inter;
         left: 1250px;
-        top: 60px;
+        top: 25px;
         font-size: 15px;
         font-style: normal;
         padding: 0;
@@ -80,7 +80,7 @@
         text-align: center;
     }
    
-    ul {
+    .nav {
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -91,12 +91,12 @@
         justify-content: center;
       }
       
-      li {
+      .nav-item {
         float: left;
         display: inline;
       }
       
-      li a {
+      .nav-item a {
         display: block;
         color: white;
         text-align: center;
@@ -105,8 +105,8 @@
       }
       
       /* Change the link color to #111 (black) on hover */
-      li a:hover {
-        background-color: #723B3B;
+     .nav-item a:hover {
+        background-color: #ffffff;
         color: black;
       }
     
@@ -115,97 +115,38 @@
         margin-bottom: 0;
     }
 
-    .tabs .title {
-        padding: 20px 10px 50px; /* Adjust the padding values */
-    text-align: center;
-    color: #fff;
-    background: #941E1E;
-    font-size: 1.5rem; /* Adjust the font size */
+    #myInput {
+        width: 380px;
+height: 45px;
+flex-shrink: 0;
+float: right;
     }
 
-    /* Tabs */
+    .search-container {
+        padding-top: 30px !important;
+        padding-right: 50px !important;
+        display: block;
+    
+        
+    }
+
+    .fa-filter {
+        width: 42px;
+        float: right;
+        color: #723B3B;
+        padding-top: 18px;
+        height: 49px;
+        flex-shrink: 0;
+    }
+
+
+    #noResultsMessage{
+        padding-left: 50px;
+        padding-top: 30px;
+        position: relative;
+        float: right;
+    }
+    
   
 
-    .media-box {
-        border: 1px solid #ddd;
-        padding: 10px;
-        margin-bottom: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s;
-    }
-
-    .media-box:hover {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .tabs .tab-body > div {
-        position: absolute;
-        width: 900px;
-        padding: 20px;
-        background-color: aliceblue;
-        /* opacity: 0; */
-        top: -100vh;
-    }
-
-    .category-title {
-        padding: 20px;
-        font-size: 24px;
-        color: #333;
-    }
-    
-    .resolutions-list {
-        list-style: none;
-        padding: 0;
-    }
-    
-    .resolution-item {
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        overflow: hidden;
-        background: #fff;
-    }
-    
-    .resolution-photo {
-        max-width: 100%;
-        height: auto;
-        display: block;
-    }
-    
-    .no-photo-placeholder {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 150px;
-        background: #eee;
-    }
-    
-    .resolution-details {
-        padding: 15px;
-    }
-    
-    .resolution-title {
-        margin-top: 0;
-        margin-bottom: 10px;
-        font-size: 18px;
-    }
-    
-    .resolution-description {
-        color: #555;
-    }
-    
-    .resolution-actions {
-        margin-top: 15px;
-    }
-    
-    .btn {
-        margin-right: 10px;
-    }
-
-    .cont li {
-        border: 3px solid #000000; /* Adjust the border style as needed */
-        margin-bottom: 15px; /* Add space between each item */
-        padding: 15px; /* Add padding for a better visual appearance */
-      }
+   

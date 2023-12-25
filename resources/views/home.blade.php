@@ -30,95 +30,92 @@
   <link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert.css') }}">
   <!-- Include SweetAlert JS -->
   <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
-
+  <link rel="stylesheet"  href="{{ asset('css/user.css') }}">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+      
+  .custom-card {
+    max-width: 50rem;
+    margin: 0 auto;
+    margin-top: 10rem;
+  }
+
+  #custom-active {
+            width: 50rem; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the div */
+        border: 1px solid #ddd; /* Add a border */
+        padding: 20px; /* Add padding as needed */
+        background: #9C0D0F;     
+  }
+
+  .card1 {
+    background: #fff;
+    padding: 2px 2px 2px 2px;     
+
+  }
+
+  .memo {
+        font-weight: 550; /* Set the desired font weight */
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+  .custom-description {
+        font-weight: 400; /* Set the desired font weight */
+        margin-bottom: 2rem;
+        font-size: 14px;
+    }
+
+    .custom-date {
+        font-weight: 300; /* Set the desired font weight */
+        font-size: 12px;
+        margin-right: 9rem;
+        margin-top: 1rem;
+    }
+    .active {
+        background-color: #9C0D0F;
+    }
+
+    .card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
+    .big {
+    background-image: url("{{ asset('images/background.png') }}");
+    background-repeat: no-repeat;
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    /* Other background properties can be added as needed */
+}
+</style>
+
+<body class="hold-transition sidebar-mini layout-fixed" id = "custom-body">
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{asset('backend')}}/dist/img/nmpc-logo.png" alt="npmc-logo" height="100" width="200">
   </div>
+<!-- nav bar -->
+  <header>
+  <div class="main-header">
+    <img src="{{ asset('images/nmpc-logo.png') }}" class="logo" max-width="10%" max-height="5%">
+      <p class="nmpc">MSU-IIT<br>NATIONAL MULTI-PURPOSE COOPERATIVE</p>  
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-
-
-      <!-- <li class="nav-item dropdown">
-    <a class="nav-link" data-toggle="dropdown" href="#">
-         Admin <i class="fas fa-sign-out-alt"></i>
-    </a>
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <a href="{{ route('logout') }}" class="dropdown-item"
-            onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();">
-               <i class="nav-icon fas fa-sign-out-alt"></i>   
-           <p> {{ __('Logout') }}<p>
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
-    </div>
-</li> -->
-
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{asset('backend')}}/dist/img/nmpc-logo.png" alt="nmpc logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">MSUIIT NMPC</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+      <div class="user-image">
           <img src="{{asset('backend')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
@@ -126,38 +123,23 @@
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
       </div>
-
-<!-- Sidebar Menu -->
+</header>
+     
+<body>
 <nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
+    <ul class="nav" data-widget="treeview" role="menu" data-accordion="false">
+       
         <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+        <a href="{{ route('home') }}" class="nav-link">
                 <p>
                     Dashboard
                 </p>
             </a>
         </li>
 
-
-
-        <!-- Add a new list item for Logout with the same style and margin -->
         <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>
                     Logout
                 </p>
@@ -169,10 +151,16 @@
         </li>
     </ul>
 </nav>
-<!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+
+<!-- Add this somewhere in your HTML to display the "No results found" message -->
+<div id="noResultsMessage" style="display: none;">No results found.</div>
+  <div class="search-container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <i class="fas fa-filter filter-icon" id="myFilter" data-toggle="modal" data-target="#filterModal"></i>
+    <div id="noResultsMessage" style="display: none;">No results found.</div> 
+</div>
+      
+  
 
   <div class="tabs">
     <div class="title">BOD Resolutions and Issuances</div>
@@ -187,11 +175,13 @@
 <!-- ... existing code ... -->
 
 <div class="tab-body">
-    <div class="active">
-        <h2>Pakigsayud</h2>
+<div class="active" id="custom-active">
+<div class="cont">
         <ul class="list-unstyled">
             @foreach($pakigsayudResolutions as $resolution)
-                <li class="media my-4">
+            <div class="card mb-3">
+            <div class="row g-0">
+            <div class="col-md-4 d-flex align-items-center">
                 @if ($resolution->photo)
                                 <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
@@ -201,41 +191,53 @@
                                         <span class="text-muted">No Photo Available</span>
                                 </div>
                             @endif
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
-                        <p>{{ $resolution->description }}</p>
-                        <div class="mt-3">
-                            <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
-                            <!-- Assuming your download link leads to the file_path -->
-                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>
-                        </div>
+            </div>
+            <div class="col-md-9">
+            <div class="card-body custom-card-body" style="padding-left: 20px;">
+            <h5 class="card-title mt-0 mb-1">{{ $resolution->title }}</h5>
+            <p class="card-text">{{ $resolution->description }}</p>
                     </div>
-                </li>
+            <p class="card-text memo">Memorandum No. {{ $resolution->memorandum_number }}</p>
+            </div>
+            <div class="col-md-12 d-flex justify-content-end">
+<div class="d-flex" style="padding-right: 20px; padding-bottom: 20px;">
+<a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-warning btn-sm">
+                                 View
+                            </a>
+                            <!-- Assuming your download link leads to the file_path -->
+                            <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-info btn-sm" download>
+                                Download
+                            </a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             @endforeach
         </ul>
     </div>
 
     <!-- Forms/Guides Category -->
     <div>
-        <h2>Forms/Guides</h2>
+
+    <div id="custom-active">
         <ul class="list-unstyled">
             @foreach($formGuidesResolutions as $resolution)
-                <li class="media my-4">
-                    <!-- Repeat the same structure as above -->
-                    <li class="media my-4">
+            <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex align-items-center">
                     @if ($resolution->photo)
                                 <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
                             @else
                                 <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                                    style="width: 300px; height: 300px;">
+                                style="width: 150px; height: 150px;">
                                         <span class="text-muted">No Photo Available</span>
                                 </div>
                             @endif
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
-                        <!-- <p>{{ $resolution->memorandum_number }}</p> -->
+                            </div>
+                            <div class="col-md-9">
+                    <div class="card-body custom-card-body" style="padding-left: 20px;">
                         <p>{{ $resolution->description }}</p>
                         <div class="mt-3">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
@@ -251,26 +253,29 @@
 
     <!-- Downloadable Files Category -->
     <div>
-        <h2>Downloadable Files</h2>
+    <div id="custom-active">
         <ul class="list-unstyled">
             @foreach($downloadableFilesResolutions as $resolution)
-                <li class="media my-4">
-                    <!-- Repeat the same structure as above -->
-                    <li class="media my-4">
+            <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex align-items-center">
                     @if ($resolution->photo)
                                 <img src="{{ asset('storage/' . $resolution->photo) }}" alt="Resolution and Issuance Photo"
                                     class="img-fluid rounded mx-auto d-block" style="max-width: 150px; max-height: 150px;">
                             @else
-                                <div class="bg-light d-flex justify-content-center align-items-center rounded"
-                                    style="width: 300px; height: 300px;">
+                            <div class="bg-light d-flex justify-content-center align-items-center rounded"
+                            style="width: 150px; height: 150px;">
                                         <span class="text-muted">No Photo Available</span>
                                 </div>
                             @endif
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">{{ $resolution->title }}</h5>
+                            <div class="col-md-9">
+                    <div class="card-body custom-card-body" style="padding-left: 20px;">
+                        <h5 class="card-title mt-0 mb-1">{{ $resolution->title }}</h5>
                         <!-- <p>{{ $resolution->memorandum_number }}</p> -->
-                        <p>{{ $resolution->description }}</p>
-                        <div class="mt-3">
+                        <p class="card-text">{{ $resolution->description }}</p>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-end">
+                          <div class="d-flex" style="padding-right: 20px; padding-bottom: 20px;">
                             <a href="{{ route('resolutions.show', $resolution->id) }}" class="btn btn-primary">View Details</a>
                             <!-- Assuming your download link leads to the file_path -->
                             <a href="{{ asset('storage/' . $resolution->file_path) }}" class="btn btn-success" download>Download</a>

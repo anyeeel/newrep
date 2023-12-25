@@ -36,11 +36,21 @@
         border: 1px solid #ddd; /* Add a border */
         padding: 20px; /* Add padding as needed */
     }
+
+    [class*=sidebar-dark-] {
+    background-color: #007bff !important;
+}
 </style>
+
+<!-- Navbar -->
 
 
 <body>
 
+
+<!-- Add this somewhere in your HTML to display the "No results found" message -->
+
+  
 @extends('layouts.datatable')
 
 @section('content')
@@ -50,12 +60,17 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1>List of Resolutions and Issuances</h1>
+                
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('resolutions.index') }}">Resolutions and Issuances</a></li>
-                    <li class="breadcrumb-item active">List</li>
+                    <li class="breadcrumb-item"> <div class="search-container">
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  
+    <div id="noResultsMessage" style="display: none;">No results found.</div> 
+</div></li>
+                    <li class="breadcrumb-item active">  <i class="fas fa-filter filter-icon" id="myFilter" data-toggle="modal" data-target="#filterModal"></i></li>
+            
                 </ol>
             </div>
         </div>
@@ -129,7 +144,91 @@
         <!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="filterModalLabel">Filter Options</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Modified Filter options form -->
+          <form class="form" method="POST" action="#">
+            <div class="input-group input--large">
+              <label class="label">Title</label> <br>
+              <input class="input--style-1" type="text" placeholder="Filter by title" name="title" style="width: 55rem;">
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="label">Month</label>
+                <select class="form-control" id="input-month">
+                  <option value="0">All Months</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <!-- Add other months as needed -->
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <label class="label">Year</label>
+                <select class="form-control" id="input-year">
+                  <option value="0">All Years</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <!-- Add other years as needed -->
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- /.content -->
+<!-- Add this script in the head section of your HTML -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Search functionality
+        $('#myInput').on('input', function () {
+            var searchText = $(this).val().toLowerCase();
+            filterResolutions(searchText);
+        });
+
+        // Filter functionality
+        $('#myFilter').on('click', function () {
+            // Add your filter logic here
+            // You may use a modal or some other UI to get filter criteria
+            // For simplicity, I'll just use an alert for demonstration
+            alert('Filter functionality will be implemented here.');
+        });
+
+        function filterResolutions(searchText) {
+            // Filter the resolutions based on the search text
+            $('.list-unstyled li').each(function () {
+                var title = $(this).find('.custom-title-color').text().toLowerCase();
+                if (title.indexOf(searchText) === -1) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+
+            // Show/hide the "No results found" message
+            var noResultsMessage = $('#noResultsMessage');
+            if ($('.list-unstyled li:visible').length === 0) {
+                noResultsMessage.show();
+            } else {
+                noResultsMessage.hide();
+            }
+        }
+    });
+</script>
 
 <!-- Include SweetAlert Library -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

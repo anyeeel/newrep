@@ -48,13 +48,13 @@
 		      	<div class="icon d-flex align-items-center justify-content-center">
 		      		<span class="fa fa-user"></span>
 		      	</div>
-		      	<h3 class="text-center mb-4">{{ __('Register') }}</h3>
+		      	<h6 class="text-center mb-4">{{ __('Register') }}</h6>
 
                   <form method="POST" action="{{ route('register') }}">
                         @csrf
 
 		      		<div class="form-group">
-		      			<input type="text" id="name" class="form-control  @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Name" required autocomplete="name" autofocus>
+		      			<input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Name" required autocomplete="name" autofocus>
                         
 
                           @error('name')
